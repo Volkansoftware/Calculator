@@ -6,36 +6,65 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            double sayi1, sayi2;
-            
-           double sonuc=0;
+            string sayi1, sayi2;
+            bool sayiDonustumu1 = false;
+            bool sayiDonustumu2 = false;
+            double sonuc=0;
             string islem;
-           
-            Console.WriteLine("Bir sayi girin");
-            sayi1 = Convert.ToDouble(Console.ReadLine());
+            double donusenSayi1 = 0;
+              double   donusenSayi2 = 0;
+            Console.WriteLine("Birinci sayiyi girin");
+            sayi1 = Console.ReadLine();
+            sayiDonustumu1 = double.TryParse(sayi1, out donusenSayi1);
+            if (sayiDonustumu1==false)
+            {
+                do
+                {
+                    Console.WriteLine("Lutfen Bir sayi giriniz");
+                    sayi1 = Console.ReadLine();
+                    sayiDonustumu1 = double.TryParse(sayi1, out donusenSayi1);
+                } while (sayiDonustumu1 == false);
+               
+            }
+         
+            Console.WriteLine("İkinci sayi girin");
             
-            Console.WriteLine("Bir sayi girin");
-            sayi2 = Convert.ToDouble(Console.ReadLine());
+            sayi2 =Console.ReadLine();
+            sayiDonustumu2 = double.TryParse(sayi2, out donusenSayi2);
+
+            if (sayiDonustumu2 == false)
+            {
+                do
+                {
+                    Console.WriteLine("Lutfen Bir sayi giriniz");
+                    sayi2 = Console.ReadLine();
+                    sayiDonustumu2 = double.TryParse(sayi2, out donusenSayi2);
+                } while (sayiDonustumu2 == false);
+
+            }
+
+
             Console.WriteLine("Bir işlem seçiniz(carpma,toplama,bolme,cikarma)");
             islem = Console.ReadLine();
+            
             if (islem == "carpma")
             {
-                sonuc = sayi1 * sayi2;
+                sonuc = donusenSayi1 * donusenSayi2;
                 Console.WriteLine("işleminizin sonucu (yukarıya yuvarlanmış hali): {0}", Math.Ceiling(sonuc));
             }
            else if (islem == "bolme")
             {
-                sonuc = sayi1 / sayi2;
+                sonuc = donusenSayi1 / donusenSayi2;
                 Console.WriteLine("işleminizin sonucu (yukarıya yuvarlanmış hali): {0}", Math.Ceiling(sonuc));
             }
             else if (islem == "toplama")
             {
-                sonuc = sayi1 + sayi2;
+                sonuc = donusenSayi1 + donusenSayi2;
                 Console.WriteLine("işleminizin sonucunuz (yukarıya yuvarlanmış hali): {0}", Math.Ceiling(sonuc));
             }
             else if (islem == "cikarma")
             {
-                sonuc = sayi1 - sayi2;
+                sonuc = donusenSayi1 - donusenSayi2;
                 Console.WriteLine("işleminizin sonucu (yukarıya yuvarlanmış hali): {0}", Math.Ceiling(sonuc));
             }
             else
